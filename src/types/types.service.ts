@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { Types } from './entity/types.entity';
 
 @Injectable()
@@ -26,5 +26,20 @@ export class TypesService {
         await this.typesRepository.delete(id);
     }
 
+    async update(id: number, types: Types): Promise<void> {
+        const existedTypes = await this.findOne(id);
+        if(existedTypes) {
+            await getConnection()
+                .createQueryBuilder()
+                .update(Types)
+                .set({
+                    name: types.name,
+                    age: types.age,
+                    phone: types.phone
+                })
+                .where("id = :id", {id})
+                .execute();
+        }
+    }
     
 }
