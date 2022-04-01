@@ -7,16 +7,7 @@ import { TypesModule } from './types/types.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
-      entities: [Types],
-      synchronize: true, // false가 안전함
-    }),
+    TypeOrmModule.forRoot(),
     TypesModule
   ],
   controllers: [AppController],
