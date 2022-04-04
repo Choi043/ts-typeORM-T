@@ -1,11 +1,14 @@
-import { CreateCatDto } from './createCatDto';
+import { Cat } from './interface/cat.interface';
+import { CreateCatDto  } from './createCatDto';
 import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
+import { CatsService } from './cats.service';
 
 @Controller('cats')
 export class CatsController {
+    constructor(private catsService: CatsService) {}
     @Get()
-    findAll(): string {
-        return 'This action returns all cats';
+    findAll(): Cat[] {
+        return this.catsService.findAll();
     }
 
     @Get(':id')
@@ -15,7 +18,7 @@ export class CatsController {
 
     @Post()
     create(@Body() createCatDto: CreateCatDto) {
-        return 'This action adds a new cat';
+        return this.catsService.create(createCatDto);
     }
 
     @Put(':id')
