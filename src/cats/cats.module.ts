@@ -1,4 +1,4 @@
-import { Cat } from './entity/cats.entity';
+import { Cat } from '../domain/cats.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { CatsController } from './cats.controller';

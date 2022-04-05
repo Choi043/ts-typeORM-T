@@ -2,7 +2,7 @@
 import { CreateCatDto  } from './createCatDto';
 import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { Cat } from './entity/cats.entity';
+import { Cat } from '../domain/cats.entity';
 
 @Controller('cats')
 export class CatsController {
