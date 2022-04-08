@@ -18,12 +18,12 @@ export class UserService {
     }
 
     async save(userDTO: UserDTO): Promise<UserDTO | undefined> {
-        await this.transfomrPassword(userDTO);
+        await this.transformPassword(userDTO);
         console.log(userDTO);
         return await this.userRepository.save(userDTO);
     }
 
-    async transfomrPassword(user: UserDTO): Promise<void> {
+    async transformPassword(user: UserDTO): Promise<void> {
         user.password = await bcrypt.hash(
             user.password, 10,
         );
